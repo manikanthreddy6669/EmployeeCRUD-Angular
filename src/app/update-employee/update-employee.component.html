@@ -1,0 +1,99 @@
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+<div class="container">
+
+    <h3>UPDATE Employee</h3>
+
+    <form #userForm="ngForm" (ngSubmit)='onUpdate(userForm.value)'>
+
+        <div class="form-group">
+
+            <label>EMPLOYEE ID: </label>
+
+            <input required minlength="1" type="number" [(ngModel)]="obj1.id" readonly="readonly" #bookIdRef='ngModel'
+                name="id" ngModel class="form-control">
+
+        </div>
+
+
+
+        <div class="form-group">
+
+            <label>EMPLOYEE NAME: </label>
+
+            <input required minlength="1" type="text" [(ngModel)]="obj1.name" #empNameRef='ngModel' name="name" ngModel
+                class="form-control">
+
+            <div *ngIf='empNameRef.errors
+                        && empNameRef.touched' class="alert alert-danger">
+
+                <div [hidden]='!empNameRef.errors.required'>
+
+                    Provide Employee Name
+
+                </div>
+
+                <div *ngIf='empNameRef.errors.pattern'>Name should be minimum of 6 characters length</div>
+
+            </div>
+
+        </div>
+
+        <div class="form-group">
+
+            <label>EMPLOYEE SALARY: </label>
+
+            <input required minlength="1" type="number" [(ngModel)]="obj1.salary" #empsalRef='ngModel' name="salary"
+                ngModel class="form-control">
+
+            <div *ngIf='empsalRef.errors && empsalRef.touched' class="alert alert-danger">
+
+                <div [hidden]='!empsalRef.errors.required'> Provide Employee Salary </div>
+
+            </div>
+        </div>
+
+        <div class="form-group">
+
+            <label>PHONE NUMBER: </label>
+
+            <input required length="10" type="number" [(ngModel)]="obj1.phonenumber" #empphoneRef='ngModel' name="phonenumber" ngModel class="form-control">
+
+            <div *ngIf='empphoneRef.errors && empphoneRef.touched' class="alert alert-danger">
+
+                <div [hidden]='!empphoneRef.errors.required'> Provide Employee Phone Number </div>
+
+            </div>
+        </div>
+
+        <div class="form-group">
+
+            <label>COMPANY: </label>
+
+            <input required minlength="6" type="text" [(ngModel)]="obj1.company" #empcompanyName='ngModel' name="company"
+                ngModel class="form-control">
+
+            <div *ngIf='empcompanyName.errors
+                        && empcompanyName.touched' class="alert alert-danger">
+
+                <div [hidden]='!empcompanyName.errors.required'>
+
+                    Provide Employee Company Name
+
+                </div>
+
+                <div *ngIf='empcompanyName.errors.pattern'>Company name should be minimum of 6 characters length</div>
+
+            </div>
+
+        </div>
+        <input [disabled]="userForm.invalid" type="submit" value="Edit Employee" class="btn btn-primary">
+
+    </form>
+
+</div>
+<div>
+    <h2>{{message}}</h2>
+</div>
